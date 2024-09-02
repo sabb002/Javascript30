@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+  <link rel="stylesheet" href="styles.css">
+</head> 
+<body>
+    <div id="digital-clock">
+      <div id="digital-hour">12</div>
+      <div id="digital-min">00</div>
+    </div>
+    <div id="clock">
+      <div id="clock-face">
+        <div class="hand" id="hour-hand"></div>
+        <div class="hand" id="min-hand"></div>
+        <div class="hand" id="sec-hand"></div>
+        <div class="digit twelve">12</div>
+        <div class="digit nine">9</div>
+        <div class="digit six">6</div>
+        <div class="digit three">3</div>
+      </div>
+    </div>
+
+  <script>
+    
+    const clock = document.getElementById("clock-face");
+    const hands = document.querySelectorAll(".hand");
+    const hour_hand = document.getElementById("hour-hand"); 
+    const min_hand = document.getElementById("min-hand"); 
+    const sec_hand = document.getElementById("sec-hand"); 
+    const digital_hour = document.getElementById("digital-hour");
+    const digital_min = document.getElementById("digital-min");
+
+    const INITIAL_ANGLE = 90;
+
+    let CURRENT_TIME = {
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes(),
+      second: new Date().getSeconds()
+    }
+
+    /**
+     * hour => 360/12 = 30deg per unit
+     * minute,second => 360/60 = 6deg per unit
+     * initial => 90*3 = 270deg
+    */
+
+    function getHourAngle(){
+      return (INITIAL_ANGLE + ((CURRENT_TIME.hour + (CURRENT_TIME.minute / 60)) * 30))
+    }
+
+    function getMinAngle(){
+      return (INITIAL_ANGLE + ((CURRENT_TIME.minute + (CURRENT_TIME.second / 60)) * 6));
+    }
+
+    function getSecAngle(){
+      return INITIAL_ANGLE + (CURRENT_TIME.second * 6);
+    }
+    
+    function updateAngle(){
+      CURRENT_TIME = {
+      hour: new Date().getHours(),
+      minute: new Date().getMinutes(),
+      second: new Date().getSeconds()
+    }
+
+      hour_hand.style.transform = `rotateZ(${getHourAngle()}deg)`;
+      min_hand.style.transform = `rotateZ(${getMinAngle()}deg)`;
+      sec_hand.style.transform = `rotateZ(${getSecAngle()}deg)`;
+      
+      digital_hour.innerText = (CURRENT_TIME.hour > 12 ? CURRENT_TIME.hour - 12 : CURRENT_TIME.hour).toString().padStart(2, '0');
+      digital_min.innerText = CURRENT_TIME.minute;
+    }
+
+    setInterval(updateAngle, 1000)
+    
+  </script>
+</body>
+</html>
