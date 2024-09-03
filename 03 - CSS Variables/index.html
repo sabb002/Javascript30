@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS variable</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="display">
+      <h1>JS</h1>
+      <img id="box" src="https://picsum.photos/200" alt="">
+    </div>
+    <div id="controls">
+      <div class="wrapper">
+        <label for="color">Color:</label>
+        <input type="color" name="color" value="#ffffff"/>
+      </div>
+
+      <div class="wrapper">
+        <label for="rotation">Rotation:</label>
+        <input type="range" name="rotation" value="0" min="-180" max="180" />
+      </div>
+
+      <div class="wrapper">
+        <label for="">Width:</label>
+        <input type="range" name="width" value="150" min="100" max="250" />
+      </div>
+
+      <div class="wrapper">
+        <label for="height">Height:</label>
+        <input type="range" name="height" value="150" min="100" max="250" />
+      </div>
+
+      <div class="wrapper">
+        <label for="">Radius:</label>
+        <input type="range" name="radius" value="0" min="0" max="50" />
+      </div>
+
+      <div class="wrapper">
+        <label for="">Blur:</label>
+        <input type="range" name="blur" value="0" min="0" step="1" max="5"/>
+      </div>
+    </div>
+
+    <script>
+      const root = document.querySelector(":root");
+      const box = document.getElementById("box");
+      const inputs = document.querySelectorAll("input");
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", handleInput);
+      });
+
+      const setValue = (element, property, value, unit = "") => {
+        element.style.setProperty("--" + property, value + unit);
+      };
+
+      const setRotation = (value) => {
+        box.style.setProperty("--rotation", value + "deg");
+      };
+
+      const setSize = (property, value) => {
+        box.style.setProperty("--" + property, value + "px");
+      };
+
+      const setColor = (value) => {
+        root.style.setProperty("--color", value);
+      };
+
+      function handleInput(e) {
+        const value = e.target.value;
+        switch (e.target.name) {
+          case "color":
+            setValue(root, "color", value);
+            break;
+          case "rotation":
+            setValue(box, "rotation", value, "deg");
+            break;
+          case "width":
+            setValue(box, "width", value, "px");
+            break;
+          case "height":
+            setValue(box, "height", value, "px");
+            break;
+          case "radius":
+            setValue(box, "border-radius", value, "%");
+            break;
+          case "blur":
+            setValue(box, "blur", value, "px");
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
