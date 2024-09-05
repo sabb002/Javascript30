@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><text x='-2' y='14'>⚡</text></svg>"
+    />
+    <title>Array Cardio 💪</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2>Array Manipulation</h2>
+    <select id="Q">
+      <option value="0" selected>List of Scientists</option>
+      <option value="1">Filter Scientists of 1760–1840 period (IR)</option>
+      <option value="2">Extract Nationality</option>
+      <option value="3.1">Sort by Birthdate (Ascending)</option>
+      <option value="3.2">Sort by Birthdate (Descending)</option>
+      <option value="4.1">Sort by Years Lived (Ascending)</option>
+      <option value="4.2">Sort by Years Lived (Descending)</option>
+    </select>
+
+    <div id="screen"></div>
+
+    <script type="module">
+      import { SCIENTISTS, people, duplicates } from "./data.js";
+
+      const screen = document.getElementById("screen");
+      const select = document.getElementById("Q");
+
+      const card = (s, color) => `
+             <div class="card">
+              <img src="${s.image}" />
+              <div class="text">
+               <h3>${s.first} ${s.last}</h3>
+               <p><span style="color: ${color}">${s.birth}</span> - ${s.passed}</p>
+              </div>
+             </div>
+           `;
+
+      function List() {
+        screen.innerHTML = "";
+        SCIENTISTS.map((s) => {
+          screen.innerHTML += card(s);
+        });
+      }
+      List();
+
+      function Filter() {
+        screen.innerHTML = "";
+        const filtered = SCIENTISTS.filter(
+          (s) => s.birth >= 1760 && s.birth <= 1840
+        );
+        filtered.map((s) => {
+          screen.innerHTML += card(s);
+        });
+      }
+
+      function Extract() {
+        screen.innerHTML = "";
+        SCIENTISTS.map((s) => {
+          screen.innerHTML += `
+             <div class="card">
+              <img src="${s.image}" />
+              <div class="text">
+               <h3>${s.first} ${s.last}</h3>
+               <p>${s.nationality}</p>
+              </div>
+             </div>
+          `;
+        });
+      }
+
+      function SortByBirth(asc) {
+        screen.innerHTML = "";
+        SCIENTISTS.sort((a, b) =>
+          asc ? a.birth - b.birth : b.birth - a.birth
+        ).map((s) => {
+          screen.innerHTML += card(s,"springgreen");
+        });
+      }
+
+      function SortByLived(asc){
+        screen.innerHTML = "";
+        SCIENTISTS.sort((a,b)=>
+        asc 
+        ?(a.passed - a.birth) - (b.passed - b.birth)
+        :((a.passed - a.birth) - (b.passed - b.birth))*-1
+      ).map(s=>{
+        screen.innerHTML += `
+            <div class="card">
+              <img src="${s.image}" />
+              <div class="text">
+               <h3>${s.first} ${s.last}</h3>
+               <p>${s.passed- s.birth} years</p>
+              </div>
+            </div>
+          `;
+      })
+      }
+
+      function update() {
+        switch (select.value) {
+          case "0":
+            List();
+            break;
+          case "1":
+            Filter();
+            break;
+          case "2":
+            Extract();
+            break;
+          case "3.1":
+            SortByBirth("asc");
+            break;
+          case "3.2":
+            SortByBirth(null);
+            break;
+          case "4.1":
+            SortByLived("asc");
+            break;
+          case "4.2":
+            SortByLived(null);
+            break;
+        }
+      }
+
+      select.addEventListener("input", update);
+    </script>
+  </body>
+</html>
