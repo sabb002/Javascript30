@@ -48,7 +48,7 @@ p{
     align-items: center;
     user-select: none;
     transition: flex 500ms var(--cubic-bazier);
-    font-family: cursive;
+    font-family: "Amatic SC", cursive;
     text-shadow: 5px 3px 0 tomato;
     pointer-events: none;
 }
@@ -64,6 +64,7 @@ p:nth-of-type(2){
 
 p:first-child,p:last-child{
     opacity: 0;
+    text-shadow: 1px 2px 0 tomato;
 }
 
 @media screen and (max-width: 600px) {
