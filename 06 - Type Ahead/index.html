@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 🐇</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon"
+    href="data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='18'>🗼</text></svg>" />
+</head>
+
+<body>
+  <div id="container">
+    <div id="settings">
+      <div>
+        <label for="debounce">Debounce:</label>
+        <select name="debounce" id="debounce">
+          <option value="0">0 ms</option>
+          <option value="300">300 ms</option>
+          <option value="500">500 ms</option>
+          <option value="700">700 ms</option>
+        </select>
+      </div>
+      <div>
+        <label for="highlight" title="Highlight matching letters">Highlight: </label>
+        <select name="highlight" id="highlight">
+          <option value="starts-with">starts with</option>
+          <option value="anywhere">anywhere</option>
+          <option value="null">null</option>
+        </select>
+      </div>
+      <div>
+        <label for="animation">Animation: </label>
+        <input type="checkbox" name="animation" id="animation" checked>
+      </div>
+    </div>
+    <form>
+      <input type="text" placeholder="Search capitals or countries" id="search">
+      <ul id="suggestions">
+      </ul>
+    </form>
+  </div>
+
+  <script type="module">
+    import {Data} from './data.js'
+
+    /**
+     * Proceed at your own risk, terrible code ahead.
+    */
+
+    const searchInput = document.getElementById("search");
+    const suggestions = document.getElementById("suggestions");
+    const animation = document.getElementById("animation");
+    const debounce = document.getElementById("debounce");
+    const highlight = document.getElementById("highlight");
+
+    const addEventListener = (node_element, capital, name) => {
+      node_element.addEventListener("click", () => {
+        searchInput.value = capital + ", " + name;
+        suggestions.innerHTML = ""
+      })
+    }
+
+    function checkSettings(suggestions, letters, names, delay) {
+      //letter match highlight
+      let node_element;
+      const splited = names.split(", ");
+
+      switch (highlight.value) {
+        case "starts-with":
+          node_element = document.createElement("li");
+          let appended = false
+          splited.forEach((nl, i) => {
+            if (nl.toLowerCase().startsWith(letters) && !appended) {
+              const matched = nl.slice(0, letters.length)
+              const rest = nl.slice(letters.length)
+              const span = document.createElement("span");
+              const matchedSpan = document.createElement("span");
+              matchedSpan.classList.add("match");
+              matchedSpan.textContent = matched;
+              let text;
+
+              if (i === 0) {
+                text = document.createTextNode(rest + ", " + splited[1])
+                span.appendChild(matchedSpan);
+                span.appendChild(text);
+              } else {
+                text = document.createTextNode(splited[0] + ", ")
+                let anotherText = document.createTextNode(rest)
+                span.appendChild(text);
+                span.appendChild(matchedSpan);
+                span.appendChild(anotherText);
+              }
+              delay.value += 30;
+              node_element.appendChild(span)
+              node_element.style.setProperty("--delay", delay.value + "ms");
+              suggestions.appendChild(node_element);
+              appended = true
+              addEventListener(node_element, splited[0], splited[1])
+
+            }
+          })
+          break;
+
+        case "anywhere":
+          node_element = document.createElement("li");
+
+          names.split("").forEach((nl) => {
+            const span = document.createElement("span");
+            span.textContent = nl;
+            if (letters.includes(nl.toLowerCase())) {
+              span.classList.add("match");
+            }
+            node_element.appendChild(span);
+          })
+
+          delay.value += 30;
+          node_element.style.setProperty("--delay", delay.value + "ms");
+          suggestions.appendChild(node_element);
+          addEventListener(node_element, splited[0], splited[1])
+          break;
+
+        case "null":
+          node_element = document.createElement("li");
+          node_element.textContent = names;
+
+          delay.value += 30;
+          node_element.style.setProperty("--delay", delay.value + "ms");
+          suggestions.appendChild(node_element);
+          addEventListener(node_element)
+          break;
+        default:
+          break;
+      }
+
+      //Animation
+      if (animation.checked) {
+        suggestions.dataset.animation = "true";
+      } else {
+        suggestions.dataset.animation = "false";
+      }
+    }
+
+
+
+    function showSuggestions(e) {
+      if (!e.target.value) return
+
+      const letters = e.target.value;
+      let delay = {
+        value: 0
+      };
+
+      Data.forEach(c => {
+        const { capital, name, population } = c;
+
+        const l_capital = capital.toLowerCase();
+        const l_name = name.toLowerCase();
+        const l_letters = letters.toLowerCase();
+
+        const condition_1 = l_capital.toLowerCase().includes(l_letters);
+        const condition_2 = l_name.toLowerCase().includes(l_letters);
+        const condition_3 = l_capital.startsWith(l_letters);
+        const condition_4 = l_name.startsWith(l_letters);
+
+        if (condition_1 || condition_2 || condition_3 || condition_4) {
+          const merged_name = c.capital + ", " + c.name;
+          checkSettings(suggestions, l_letters, merged_name, delay);
+        }
+      })
+    };
+
+    function debounceInput(fn, t) {
+      let timer = 0;
+      return function (...args) {
+        clearTimeout(timer);
+        suggestions.innerHTML = "";
+        timer = setTimeout(() => {
+          fn.apply(this, args);
+        }, t);
+      }
+    }
+
+
+    //I believe there's a better way to update the debounce.value!
+
+    let d_Suggestions = debounceInput(showSuggestions, debounce.value)
+    debounce.addEventListener("change", (e) => {
+      let t = +(e.target.value)
+      searchInput.removeEventListener("input", d_Suggestions)
+      d_Suggestions = debounceInput(showSuggestions, t)
+      searchInput.addEventListener("input", d_Suggestions)
+    })
+
+    searchInput.addEventListener("input", d_Suggestions);
+  </script>
+</body>
+
+</html>
