@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Array Cardio 💪💪</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+  <div id="container">
+    <div class="header">
+      <h1>Array Manipulation 2⚡</h1>
+      <button id="modalOpen">+ ADD</button>
+    </div>
+    <form id="modal">
+      <div>
+        <p>Add Entry</p>
+        <button id="modalClose">X</button>
+      </div>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+      </div>
+      <div>
+        <label for="profession">Profession:</label>
+        <input type="text" name="profession" id="profession">
+      </div>
+      <div>
+        <label for="birth">Birth:</label>
+        <input type="number" name="birth" id="birth">
+      </div>
+      <div>
+        <label for="district">District:</label>
+        <input type="text" name="district" id="district">
+      </div>
+      <div>
+        <label for="income">Income:</label>
+        <input type="number" name="income" id="income">
+      </div>
+      <button id="add" type="submit">Add</button>
+    </form>
+
+    <!--Never use html table! Impossible to set dimensions. This technique is from stack overflow-->
+    <table id="table_parent">
+      <tr>
+        <td>
+          <table id="table_sibling">
+            <tr>
+              <th>Name🙎🏻‍♂️</th>
+              <th>Profession👨🏻‍🔧</th>
+              <th>Birth🍼</th>
+              <th>District🪧</th>
+              <th>Income 💶</th>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div style="height:40vh; overflow:auto;">
+            <table id="table_main" width="100%">
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div id="q">
+      <div>
+        <h4># List the persons in their 20s.</h4>
+        <button id="q1">Run</button>
+      </div>
+      <div>
+        <h4># List all individuals who live in 
+          <input id="q2_input" type="text" placeholder="i.e. Dhaka"></h4>
+        <button id="q2">Run</button>
+      </div>
+      <div>
+        <h4># Retrieve the entries with income more than 
+          <input id="q3_input" type="number" placeholder="i.e. 50000"></h4>
+        <button id="q3">Run</button>
+      </div>
+      <div>
+        <h4># Retrieve the entries with income less than 
+          <input id="q4_input" type="number" placeholder="i.e. 50000"></h4>
+          <button id="q4">Run</button>
+        </div>
+        <div>
+          <h4># List the entries of profession
+            <input id="q5_input" type="text" placeholder="i.e. Doctor">  
+        </h4>
+        <button id="q5">Run</button>
+      </div>
+      <div>
+        <h4># Sort the entries by age.</h4>
+        <button id="q6">Run</button>
+      </div>
+
+    </div>
+  </div>
+  <script type="module">
+    import { people } from './data.js';
+
+    const tbody = document.getElementById("tbody")
+    const modalOpen = document.getElementById("modalOpen");
+    const modalClose = document.getElementById("modalClose")
+    const modal = document.getElementById("modal");
+    const name = document.getElementById("name");
+    const profession = document.getElementById("profession");
+    const birth = document.getElementById("birth");
+    const district = document.getElementById("district");
+    const income = document.getElementById("income");
+    const add = document.getElementById("add");
+    const all_input = document.querySelectorAll("#modal input")
+    const q1 = document.getElementById("q1");
+    const q2 = document.getElementById("q2");
+    const q3 = document.getElementById("q3");
+    const q4 = document.getElementById("q4");
+    const q5 = document.getElementById("q5");
+    const q6 = document.getElementById("q6");
+
+    let PeopleList = [...people];
+
+
+    function addPerson(e) {
+      e.preventDefault();
+
+      const data =
+      {
+        "ID": Math.random() * 100 + 1,
+        "Name": e.target.form[1].value || "-",
+        "Profession": e.target.form[2].value || "-",
+        "BirthYear": e.target.form[3].value || "-",
+        "District": e.target.form[4].value || "-",
+        "Income": e.target.form[5].value || "-",
+      }
+
+
+      closeModal();
+      PeopleList.unshift(data)
+      renderPeople(PeopleList);
+    }
+
+
+    function renderPeople(list) {
+      tbody.innerHTML = "";
+      list.forEach(p => {
+        const tr = document.createElement("tr");
+        const td1 = document.createElement("td");
+        td1.textContent = p.Name;
+        const td2 = document.createElement("td");
+        td2.textContent = p.Profession;
+        const td3 = document.createElement("td");
+        td3.textContent = p.BirthYear;
+        const td4 = document.createElement("td");
+        td4.textContent = p.District;
+
+        const td5 = document.createElement("td");
+        td5.textContent = "৳" + p.Income;
+
+        const btn = document.createElement("button");
+        btn.textContent = "⛔";
+        btn.addEventListener("click", () => {
+          tbody.removeChild(tr);
+        })
+        btn.addEventListener("mouseover", () => {
+          tr.classList.add("hovered");
+        })
+        btn.addEventListener("mouseleave", () => {
+          tr.classList.remove("hovered");
+        })
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(btn);
+        tbody.appendChild(tr);
+      })
+    }
+
+    renderPeople(people)
+
+    const closeModal = () => {
+      modal.style.display = "none";
+      all_input.forEach(input => {
+        input.value = "";
+      })
+    };
+
+    modalOpen.addEventListener("click", () => {
+      modal.style.display = "block";
+    })
+
+    modalClose.addEventListener("click", closeModal)
+    add.addEventListener("click", addPerson)
+
+    // Tasks
+    const today = new Date().getFullYear();
+
+    //list the persons in their 20s.
+    q1.addEventListener("click", () => {
+      const list = PeopleList.filter((p) => (today - p.BirthYear) > 19 && (today - p.BirthYear) < 31);
+      renderPeople(list);
+    })
+
+    q2.addEventListener("click", () => {
+      const el = document.getElementById("q2_input")
+      const city = (el.value).toLowerCase() || "dhaka";
+
+      const list = PeopleList.filter((p) =>p.District.toLowerCase().includes(city));
+      
+      renderPeople(list);
+    })
+
+    q3.addEventListener("click", ()=>{
+      const el = document.getElementById("q3_input")
+      const income = +el.value || 50000;
+      
+      const list = PeopleList.filter((p)=> p.Income >= income)
+      renderPeople(list) 
+    })
+
+    q4.addEventListener("click", ()=>{
+      const el = document.getElementById("q4_input")
+      const income = +el.value || 50000;
+      
+      const list = PeopleList.filter((p)=> p.Income < income)
+      renderPeople(list);
+    })
+
+    q5.addEventListener("click", ()=>{
+      const el = document.getElementById("q5_input")
+      const job = el.value.toLowerCase() || "doctor";
+
+      const list = PeopleList.filter((p) => p.Profession.toLowerCase().includes(job));
+      renderPeople(list);
+    })
+
+    q6.addEventListener("click", ()=>{
+      const list = [...PeopleList];
+      list.sort((a,b)=>(today - a.BirthYear) - (today - b.BirthYear))
+      renderPeople(list);
+    })
+  </script>
+</body>
+
+</html>
