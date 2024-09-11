@@ -13,6 +13,7 @@ Welcome to my sleep-deprived journey through JavaScript30 (no library) - now wit
 | 05 - Flex Panel Gallery | Upgraded flex panel gallery with enhanced transitions and responsiveness. | [View](https://sabb002.github.io/Javascript30-extended/05%20-%20Flex%20Panel%20Gallery/) |
 | 06 - Type Ahead (Debounce) | Search functionality with debounce and improved suggestions. | [View](https://sabb002.github.io/Javascript30-extended/06%20-%20Type%20Ahead/) |
 | 07 - Array Cardio Day 2 | Advanced array method exercises with real-world application examples. | [View](https://sabb002.github.io/Javascript30-extended/07%20-%20Array%20Cardio%20Day%202/) |
+| 08 - HTML5 Canvas | Minimal drawing canvas 2d | [View](https://sabb002.github.io/Javascript30-extended/08%20-%20HTML5%20Canvas/) |
 
 ## Technologies Used
 
