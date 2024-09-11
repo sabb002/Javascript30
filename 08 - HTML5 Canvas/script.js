@@ -1,6 +1,9 @@
 const settings = document.getElementById('settings');
+const clear = document.getElementById('clear');
 const color = document.getElementById('color');
 const stroke = document.getElementById('stroke');
+
+
 
 
 stroke.addEventListener('input', (e) => {
@@ -13,6 +16,9 @@ color.addEventListener('input', (e) => {
     settings.style.setProperty('--color', e.target.value);
 })
 
+clear.addEventListener('click', () => {
+    _ctx.clearRect(0, 0, W, H);
+})
 
 /** ---------------- Canvas  ----------------- */
 const canvas = /** @type {HTMLCanvasElement} */(document.getElementById('canvas1'));
