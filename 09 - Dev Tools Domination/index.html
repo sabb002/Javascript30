@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://fav.farm/ℹ️" />
+  <title>DEV TOOLS DOMINATION</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h2>CONSOLE METHODS</h2>
+  <div class="container">
+    <div class="wrapper">
+      <p>Log</p>
+      <code>
+          <span class="object">console</span>.<span class="method">log</span>(<span class="string">"Hello World!"</span>);
+        </code>
+      <img src="./assets/log.webp" alt="image1">
+    </div>
+
+    <div class="wrapper">
+      <p>Warn</p>
+      <code>
+          <span class="object">console</span>.<span class="method">warn</span>(<span class="string">"CODE MAY CONTAIN BUGS!🪲"</span>);
+        </code>
+      <img src="./assets/warn.webp" alt="image2">
+    </div>
+
+    <div class="wrapper">
+      <p>Error</p>
+      <code>
+          <span class="object">console</span>.<span class="method">error</span>(<span class="string">"Oh Shit! Not Good.💀"</span>);
+        </code>
+      <img src="./assets/error.webp" alt="image3">
+    </div>
+
+    <div class="wrapper">
+      <p>Styled log</p>
+      <code>
+          <span class="object">console</span>.<span class="method">log</span>(<span class="string">"%cRoses are red, %cviolets are blue, %cI love JavaScript, %cyou should too."<br>
+            "color:red;font-size:10px;font-weight:bold",<br>
+            "color:blue;font-size:10px;font-weight:bold",<br>
+            "color:orange;font-size:10px;font-weight:bold",<br>
+            "color:teal;font-size:10px;font-weight:bold"</span>);
+        </code>
+      <img src="./assets/styled.webp" alt="image4">
+    </div>
+
+    <div class="wrapper">
+      <p>Interpolated</p>
+      <code>
+          <span class="object">console</span>.<span class="method">log</span>(<span class="string">"I love %s%d%s."</span>,<span class="string">"JavaScript"</span>, 30 ,<span class="string">"👨🏻‍💻"</span>);
+        </code>
+      <img src="./assets/interpolated.webp" alt="image5">
+    </div>
+
+    <div class="wrapper">
+      <p>Time / TimeEnd</p>
+      <code>
+        <span class="object">console</span>.<span class="method">time</span>(<span class="string">"Insertion sort(100,000)"</span>)<br><br>
+        <span class="var">let</span> numbers = <span class="object">Array</span>.<span class="method">from</span>({<span class="var">length</span>:100000}, () => <span class="object">Math</span>.<span class="method">floor</span>(<span class="object">Math</span>.<span class="method">random</span>() * 1000));<br><br>
+        <span class="var">function</span> <span class="method" >insertionSort </span>(<span class="var">arr, len = <span class="object">arr</span>.<span class="method">length</span></span>) {<br>
+              &ensp;<span class="var">let</span> j, current_value;<br><br>
+              &ensp;<span class="var">for</span>(<span class="var">let</span> i = 1; i &#60; len; i++){<br>
+                &ensp;&ensp;&ensp;&ensp;j = i;<br>
+                &ensp;&ensp;&ensp;&ensp;current_value = <span class="object">arr</span>[i];<br><br>
+                &ensp;&ensp;&ensp;&ensp;<span class="var">while</span>((j - 1) &#62;= 0 <span class="method">&&</span> <span class="object">arr</span>[j-1] &#62; current_value){<br>
+                  &ensp;&ensp;&ensp;&ensp;&ensp;<span class="object">arr</span>[j] = <span class="object">arr</span>[j-1];<br>
+                  &ensp;&ensp;&ensp;&ensp;&ensp;j--;<br>
+                  &ensp;&ensp;&ensp;&ensp;}<br><br>
+                &ensp;&ensp;&ensp;&ensp;<span class="object">arr</span>[j] = current_value;<br>
+              &ensp;&ensp;&ensp;}<br>
+        }<br><br>
+        <span class="method">insertionSort</span>(<span class="var">numbers</span>);<br><br>
+        <span class="object">console</span>.<span class="method">timeEnd</span>(<span class="string">"Insertion sort(100,000)"</span>)<br>
+        </code>
+      <img src="./assets/time.webp" alt="image6">
+    </div>
+
+    <div class="wrapper">
+      <p>Table</p>
+      <code><span class="var">const</span> countries = <br>
+        [<br>
+        &ensp;&ensp;{
+            <span class="method">name</span>: 'Eiffel Tower',
+            <span class="method">height_m</span>: 324,
+            <span class="method">city</span>: "Paris"
+        },<br>
+        &ensp;&ensp;{
+            <span class="method">name</span>: "Burj Khalifa",
+            <span class="method">height_m</span>: 828,
+            <span class="method">city</span>: "Dubai"
+        },<br>
+        &ensp;&ensp;{
+            <span class="method">name</span>: "CN Tower",
+            <span class="method">height_m</span>: 553,
+            <span class="method">city</span>: "Toronto"
+        }<br>
+    ]<br><br>
+          <span class="object">console</span>.<span class="method">table</span>(<span class="string"><span class="var">countries</span></span>);
+        </code>
+      <img src="./assets/table.webp" alt="image7">
+    </div>
+
+    <div class="wrapper">
+      <p>Assert</p>
+      <code>
+          <span class="object">console</span>.<span class="method">assert</span>(1 <span class="object">&#61;&#61;&#61;</span> 2, <span class="string">"1 is not equal to 2!"</span>);
+        </code>
+      <img src="./assets/assert.webp" alt="image8">
+    </div>
+
+    <div class="wrapper">
+      <p>Info</p>
+      <code>
+          <span class="object">console</span>.<span class="method">info</span>(<span class="string">"Did you know The oldest known “your mom” joke is 3,500 years old! same as your mom."</span>);
+        </code>
+      <img src="./assets/info.webp" alt="image9">
+    </div>
+
+    <div class="wrapper">
+      <p>Count</p>
+      <code>
+        <span class="var">const</span> fruits = ["apple🍎", "orange🍊","Pear🍐", "apple🍎" , "pear🍐", "orange🍊", "orange🍊"];<br><br>
+        <span class="var">fruits</span>.<span class="method">forEach</span>(fruit => <span class="object">console</span>.<span class="method">count</span>(fruit));
+        </code>
+      <img src="./assets/count.webp" alt="image10">
+    </div>
+
+    <div class="wrapper">
+      <p>Clear</p>
+      <code>
+          <span class="object">console</span>.<span class="method">clear</span>();
+        </code>
+      <img src="./assets/clear.webp" alt="image11">
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
