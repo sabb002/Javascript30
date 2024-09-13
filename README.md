@@ -14,6 +14,7 @@ Welcome to my sleep-deprived journey through JavaScript30 (no library) - now wit
 | 06 - Type Ahead (Debounce) | Search functionality with debounce and improved suggestions. | [View](https://sabb002.github.io/Javascript30-extended/06%20-%20Type%20Ahead/) |
 | 07 - Array Cardio Day 2 | Advanced array method exercises with real-world application examples. | [View](https://sabb002.github.io/Javascript30-extended/07%20-%20Array%20Cardio%20Day%202/) |
 | 08 - HTML5 Canvas | Minimal drawing canvas 2d | [View](https://sabb002.github.io/Javascript30-extended/08%20-%20HTML5%20Canvas/) |
+| 09 - Dev Tools Domination | No more boring console.log() | [View](https://sabb002.github.io/Javascript30-extended/09%20-%20Dev%20Tools%20Domination/) |
 
 ## Technologies Used
 
