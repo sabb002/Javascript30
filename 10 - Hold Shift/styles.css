@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: white;
+}
+
+#wrapper{
+  width: min(700px, 95%);
+  margin: 0 auto;
+}
+
+#header{
+  display: flex;
+  align-items: center;
+}
+
+#header h2{
+  flex:1;
+  margin-inline:1rem;
+}
+
+#header button{
+  margin-inline: 5px;
+  width: 50px;
+  height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+}
+#header button:active{
+  transform: scale(0.95);
+}
+#header #add{
+  color: white;
+  background-color: #00c254;
+}
+#header #del{
+  color: white;
+  background-color: red;
+}
+
+#container{
+  counter-reset: quote_count;
+  height: 70vh;
+  margin-top: 10px;
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  border: 1px solid #0003;
+  border-radius: 18px;
+}
+
+#container .quote{
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 14px;
+  transition: transform 300ms;
+  border-radius: 8px;
+  background-color: #0001;
+  box-shadow: 0 2px 1px #8885 ;
+  transition: background-color 300ms;
+  overflow: hidden;
+}
+
+#container .quote.added{
+  background-color: #00d85e55;
+}
+
+#container .quote input{
+  display: none;
+}
+
+#container .quote label{
+  counter-increment: quote_count;
+  display: block;
+  font-weight: bold;
+  padding: 1rem;
+  user-select: none;
+  cursor: pointer;
+}
+#container .quote label:hover{
+  background-color: #f003;
+}
+
+#container .quote label::before{
+  content: counter(quote_count)".";
+  padding-inline: 4px;
+}
+
+#container .quote input:checked ~ label{
+  color: white;
+  background-color: #f00;
+  box-shadow: 0 2px 1px #f005 ;
+}
+
+#container>p{
+  font-size: min(140px,10vw);
+  text-align: center;
+  font-weight: bold;
+  color: #0001;
+}
+
+#container::-webkit-scrollbar{
+  width: 3px;
+  height: 3px;
+}
+
+#container::-webkit-scrollbar-thumb{
+  background-color: gray;
+  border-radius: 5px;
+}

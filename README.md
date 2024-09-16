@@ -6,15 +6,16 @@ Welcome to my sleep-deprived journey through JavaScript30 (no library) - now wit
 
 | Project Name | Description | Live Demo |
 |--------------|-------------|-----------|
-| 01 - JavaScript Drum Kit | Enhanced keyboard-triggered drum kit with improved sound quality. | [View](https://sabb002.github.io/Javascript30-extended/01%20-%20JavaScript%20Drum%20Kit/) |
-| 02 - JS and CSS Clock | Refined analog clock with smoother animations and additional features. | [View](https://sabb002.github.io/Javascript30-extended/02%20-%20JS%20and%20CSS%20Clock/) |
-| 03 - CSS Variables | Extended CSS variables manipulation with more interactive controls. | [View](https://sabb002.github.io/Javascript30-extended/03%20-%20CSS%20Variables/) |
-| 04 - Array Cardio Day 1 | Advanced array method exercises with real-world application examples. | [View](https://sabb002.github.io/Javascript30-extended/04%20-%20Array%20Cardio%20Day%201/) |
-| 05 - Flex Panel Gallery | Upgraded flex panel gallery with enhanced transitions and responsiveness. | [View](https://sabb002.github.io/Javascript30-extended/05%20-%20Flex%20Panel%20Gallery/) |
-| 06 - Type Ahead (Debounce) | Search functionality with debounce and improved suggestions. | [View](https://sabb002.github.io/Javascript30-extended/06%20-%20Type%20Ahead/) |
-| 07 - Array Cardio Day 2 | Advanced array method exercises with real-world application examples. | [View](https://sabb002.github.io/Javascript30-extended/07%20-%20Array%20Cardio%20Day%202/) |
-| 08 - HTML5 Canvas | Minimal drawing canvas 2d | [View](https://sabb002.github.io/Javascript30-extended/08%20-%20HTML5%20Canvas/) |
-| 09 - Dev Tools Domination | No more boring console.log() | [View](https://sabb002.github.io/Javascript30-extended/09%20-%20Dev%20Tools%20Domination/) |
+| 01 - JavaScript Drum Kit | Enhanced keyboard-triggered drum kit with improved sound quality.🔊| [View](https://sabb002.github.io/Javascript30-extended/01%20-%20JavaScript%20Drum%20Kit/) |
+| 02 - JS and CSS Clock | Refined analog clock with smoother animations and additional features.🕑 | [View](https://sabb002.github.io/Javascript30-extended/02%20-%20JS%20and%20CSS%20Clock/) |
+| 03 - CSS Variables | Extended CSS variables manipulation with more interactive controls.➕ | [View](https://sabb002.github.io/Javascript30-extended/03%20-%20CSS%20Variables/) |
+| 04 - Array Cardio Day 1 | Advanced array method exercises with real-world application examples.🅰️ | [View](https://sabb002.github.io/Javascript30-extended/04%20-%20Array%20Cardio%20Day%201/) |
+| 05 - Flex Panel Gallery | Upgraded flex panel gallery with enhanced transitions and responsiveness.📱 | [View](https://sabb002.github.io/Javascript30-extended/05%20-%20Flex%20Panel%20Gallery/) |
+| 06 - Type Ahead (Debounce) | Search functionality with debounce and improved suggestions.🔎 | [View](https://sabb002.github.io/Javascript30-extended/06%20-%20Type%20Ahead/) |
+| 07 - Array Cardio Day 2 | Advanced array method exercises with real-world application examples.🅰️ | [View](https://sabb002.github.io/Javascript30-extended/07%20-%20Array%20Cardio%20Day%202/) |
+| 08 - HTML5 Canvas | Minimal drawing canvas 2d.🎨| [View](https://sabb002.github.io/Javascript30-extended/08%20-%20HTML5%20Canvas/) |
+| 09 - Dev Tools Domination | No more boring console.log()🪵| [View](https://sabb002.github.io/Javascript30-extended/09%20-%20Dev%20Tools%20Domination/) |
+| 10 - Hold Shift | Select multiple items by holding shift and click in a list of slanders!💀 | [View](https://sabb002.github.io/Javascript30-extended/10%20-%20Hold%20Shift/) |
 
 ## Technologies Used
 
